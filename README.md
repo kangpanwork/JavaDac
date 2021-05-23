@@ -1,30 +1,18 @@
-### 源码
-Thus "FooBah" becomes "fooBah" and "X" becomes "x", but "URL" stays  as "URL".
-如果一个类名是以两个大写字母开头的，则首字母不变，其它情况下默认首字母变成小写。
-```java
-    /**
-     * Utility method to take a string and convert it to normal Java variable
-     * name capitalization.  This normally means converting the first
-     * character from upper case to lower case, but in the (unusual) special
-     * case when there is more than one character and both the first and
-     * second characters are upper case, we leave it alone.
-     * <p>
-     * Thus "FooBah" becomes "fooBah" and "X" becomes "x", but "URL" stays
-     * as "URL".
-     *
-     * @param  name The string to be decapitalized.
-     * @return  The decapitalized version of the string.
-     */
-    public static String decapitalize(String name) {
-        if (name == null || name.length() == 0) {
-            return name;
-        }
-        if (name.length() > 1 && Character.isUpperCase(name.charAt(1)) &&
-                        Character.isUpperCase(name.charAt(0))){
-            return name;
-        }
-        char chars[] = name.toCharArray();
-        chars[0] = Character.toLowerCase(chars[0]);
-        return new String(chars);
-    }
-```
+### JavaDoc
+Java文档，访问URL：https://kangpan.work/JavaDoc/#/
+
+
+### 个人博客
+👀 https://kangpan.work/
+
+### 个人文档
+- 👀 https://kangpan.work/EurakaDoc/#/
+
+- 👀 https://kangpan.work/DockerDoc/#/
+
+- 👀 https://kangpan.work/JavaDoc/#/
+
+- 👀 [查看更多文档](https://github.com/kangpanwork?tab=repositories)
+
+### 个人微信
+![微信](/1.jpg)
