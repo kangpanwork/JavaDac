@@ -177,8 +177,10 @@ public User getUser() {
 ```
 
 在 ElectricService 里通过 getUser() 获取 User 对象：
-原来出错的方式：`String payNum = = adminUserService.adminUser.getPayNum();`
-修改后的方式：`String payNum = adminUserService.getAdminUser().getPayNum();`
+原来出错的方式：
+`String payNum = adminUserService.adminUser.getPayNum();`
+修改后的方式：
+`String payNum = adminUserService.getAdminUser().getPayNum();`
 
 运行下来，一切正常，可以看到管理员登录日志了：
 ```
