@@ -1,4 +1,8 @@
 
+![](/1.gif)
+
+> 本文代码地址https://github.com/kangpanwork/aopErrorDemo 
+
 
 Spring AOP 是 Spring 中除了依赖注入外（DI）最为核心的功能，顾名思义，AOP 即 Aspect Oriented Programming，翻译为面向切面编程。
 
