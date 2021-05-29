@@ -26,6 +26,20 @@
         language:'chinese'
       },
       search: 'auto', // 默认值
+      plugins: [
+        function(hook,vm) {
+          var footer = [
+            '<hr/>',
+            '<footer>',
+            '<span><a href="https://github.com/kangpanwork">kangpan</a> &copy;2021.</span>',
+            '</footer>'
+          ].join('');
+
+          hook.afterEach(function(html) {
+            return html + footer;
+          });
+        }
+  ]
     }
   </script>
   <!-- Docsify v4 -->
