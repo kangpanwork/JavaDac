@@ -1,4 +1,3 @@
-![](/1.gif)
 
 > 本文代码地址 https://github.com/kangpanwork/aopErrorDemo 
 
