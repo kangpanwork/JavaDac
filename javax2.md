@@ -91,4 +91,24 @@ public class Observer implements IObserver {
     }
 }
 ```
+```
+/**
+ * 事件
+ */
+public class Event {
+    /**
+     * 事件消息
+     */
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+}
+
+```
 在 java.util.Observable 类中，已经实现了主要的功能，如添加，删除，通知观察者，开发人员可以直接继承 Observable 使用这些功能。它的 update() 方法会在 Observable 的 notifyObservers() 方法中被回调，以获得最新的状态变化。
