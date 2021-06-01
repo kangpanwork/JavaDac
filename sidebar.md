@@ -3,6 +3,7 @@
 - [Spring AOP 常见错误（二）](/SpringAOP2.md)
 - [Value Object 模式和业务代理模式](/javax1.md)
 - [观察者模式](/javax2.md)
+- [装饰者模式](/javax3.md)
 - [如何实现RPC远程服务调用](/RPC.md)
 - [如何注册和发现服务](/如何注册和发现服务.md)
 - [HashMap](/HashMap.md)
