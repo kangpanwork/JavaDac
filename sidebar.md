@@ -6,6 +6,7 @@
 - [装饰者模式](/javax3.md)
 - [如何实现RPC远程服务调用](/RPC.md)
 - [如何注册和发现服务](/如何注册和发现服务.md)
+- [如何监控微服务调用](/javaw1.md)
 - [HashMap](/HashMap.md)
 - [Qualifier之Bean的名称首字母大写还是小写](/Qualifier.md)
 - [如何编写没有web容器的spring程序](/如何编写没有.md)
