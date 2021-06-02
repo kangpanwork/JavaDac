@@ -4,6 +4,7 @@
 - [Value Object 模式和业务代理模式](/javax1.md)
 - [观察者模式](/javax2.md)
 - [装饰者模式](/javax3.md)
+- [享元模式](/javax4.md)
 - [如何实现RPC远程服务调用](/RPC.md)
 - [如何注册和发现服务](/如何注册和发现服务.md)
 - [如何监控微服务调用](/javaw1.md)
