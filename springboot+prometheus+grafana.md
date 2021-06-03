@@ -158,12 +158,11 @@ availableTags: [ ]
 http_port = 8888
 ```
 更改 账号密码
+
 ```
 [security]
-
 # default admin user, created on startup
 admin_user = admin
-
 # default admin password, can be changed before first start of grafana, or in profile settings
 admin_password = admin
 ```
@@ -173,16 +172,18 @@ admin_password = admin
 浏览器输入 `http://localhost:8888/` ，输入 `admin admin`
 
 
+![](/2.jpg)
+
 
  `windows` 安装 `prometheus` ，地址 ：[https://prometheus.io/download/](https://prometheus.io/download/)
 配置 任务和实例，打开 `prometheus.yml` 文件，详情见 [任务和实例](https://www.prometheus.wang/quickstart/prometheus-job-and-instance.html)
 ```
 scrape_configs:
-  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  #The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'prometheus'
 
-    # metrics_path defaults to '/metrics'
-    # scheme defaults to 'http'.
+    #metrics_path defaults to '/metrics'
+    #scheme defaults to 'http'.
     
     metrics_path: '/actuator/prometheus'
 
@@ -191,8 +192,8 @@ scrape_configs:
     
   - job_name: 'node'
 
-    # metrics_path defaults to '/metrics'
-    # scheme defaults to 'http'.
+    #metrics_path defaults to '/metrics'
+    #scheme defaults to 'http'.
     
     static_configs:
     - targets: ['localhost:9182']
@@ -202,9 +203,12 @@ scrape_configs:
 浏览器输入 `http://localhost:9090/targets` ，`prometheus` 默认端口 `9090`，看到这两个实例都是 `down` 状态
 
 
+![](/5.jpg)
+
 
 了解下  `prometheus` 架构，`prometheus` 主要是通过定时拉取应用程序中暴露的时间序列进行工作的，可以在 `prometheus.yml` 文件配置 `Jobs/Exporters`
 
+![](/6.jpg)
 
 
 为什么要监控应用程序的各个指标，推荐文章 [度量驱动开发](https://www.infoq.cn/article/metrics-driven-development) 感兴趣的可以看下
@@ -219,11 +223,18 @@ scrape_configs:
 ```
 启动项目，看到 `springboot` 项目实例 状态是 `up`
 
+
+![](/7.jpg)
+
 点击 `Endpoint` 可以看到 `JVM` 各项指标
+
+![](/8.jpg)
 
 通过 `grafana` 图形化展示，`JVM` 堆内存 进程内存  `HTTP`请求持续时间  详情见 `4701` 指标 
 
 [https://grafana.com/grafana/dashboards](https://grafana.com/grafana/dashboards) 
+
+![](/9.jpg)
 
 参考文章 
 [Spring Boot Actuator:健康检查、审计、统计和监控](https://bigjar.github.io/2018/08/19/Spring-Boot-Actuator-%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5%E3%80%81%E5%AE%A1%E8%AE%A1%E3%80%81%E7%BB%9F%E8%AE%A1%E5%92%8C%E7%9B%91%E6%8E%A7/)

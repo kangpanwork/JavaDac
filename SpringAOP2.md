@@ -77,7 +77,9 @@ public class AopConfig {
 ```
 添加这段代码后，我们执行 charge() 操作，发现不仅没有相关日志，而且在执行下面这一行代码的时候直接抛出了 NullPointerException：`String payNum = dminUserService.user.getPayNum();`
 本来一切正常的代码，因为引入了一个 AOP 切面，抛出了 NullPointerException。这会是什么原因呢？我们先 debug 一下，来看看加入 AOP 后调用的对象是什么样子。
+
 ![](/6.png)
+
 可以看出，加入 AOP 后，我们的对象已经是一个代理对象了，如果你眼尖的话，就会发现在上图中，属性 adminUser 确实为 null。为什么会这样？为了解答这个诡异的问题，我们需要进一步理解 Spring 使用 CGLIB 生成 Proxy 的原理。
 #### 案例解析
 我们在上一个案例中解析了创建 Spring Proxy 的大体过程，在这里，我们需要进一步研究一下通过 Proxy 创建出来的是一个什么样的对象。正常情况下，AdminUserService 只是一个普通的对象，而 AOP 增强过的则是一个 `AdminUserService $$EnhancerBySpringCGLIB$$xxxx`。
@@ -154,6 +156,7 @@ protected Object createProxyClassAndInstance(Enhancer enhancer, Callback[] callb
 ```
 
 这里我们可以了解到，Spring 会默认尝试使用 objenesis 方式实例化对象，如果失败则再次尝试使用常规方式实例化对象。现在，我们可以进一步查看 objenesis 方式实例化对象的流程。
+
 ![](/7.png)
 
 参照上述截图所示调用栈，objenesis 方式最后使用了 JDK 的 ReflectionFactory.newConstructorForSerialization() 完成了代理对象的实例化。而如果你稍微研究下这个方法，你会惊讶地发现，这种方式创建出来的对象是不会初始化类成员变量的。
@@ -225,9 +228,13 @@ public Object intercept(Object proxy, Method method, Object[] args, MethodProxy 
 }
 ```
 当代理类方法被调用，会被 Spring 拦截，从而进入此 intercept()，并在此方法中获取被代理的原始对象。而在原始对象中，类属性是被实例化过且存在的。因此代理类是可以通过方法拦截获取被代理对象实例的属性。说到这里，我们已经解决了问题。但如果你看得仔细，就会发现，其实你改变一个属性，也可以让产生的代理对象的属性值不为 null。例如修改启动参数 spring.objenesis.ignore 如下：
+
 ![](/8.png)
+
 此时再调试程序，你会发现 adminUser 已经不为 null 了：
+
 ![](/9.png)
+
 所以这也是解决这个问题的一种方法，相信聪明的你已经能从前文贴出的代码中找出它能够工作起来的原理了。
 #### 重点回顾
 通过以上两个案例的介绍，相信你对 Spring AOP 动态代理的初始化机制已经有了进一步的了解，这里总结重点如下：使用 AOP，实际上就是让 Spring 自动为我们创建一个 Proxy，使得调用者能无感知地调用指定方法。而 Spring 有助于我们在运行期里动态织入其它逻辑，因此，AOP 本质上就是一个动态代理。我们只有访问这些代理对象的方法，才能获得 AOP 实现的功能，所以通过 this 引用是无法正确使用 AOP 功能的。在不能改变代码结果前提下，我们可以通过 @Autowired、AopContext.currentProxy() 等方式获取相应的代理对象来实现所需的功能。我们一般不能直接从代理类中去拿被代理类的属性，这是因为除非我们显示设置 spring.objenesis.ignore 为 true，否则代理类的属性是不会被 Spring 初始化的，我们可以通过在被代理类中增加一个方法来间接获取其属性。

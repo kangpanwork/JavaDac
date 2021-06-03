@@ -32,4 +32,7 @@ public @interface JunitPerfConfig {
     Class<? extends Reporter>[] reporter() default {ConsoleReporter.class}; // 报告信息
 }
 ```
+
+![](/27.jpg)
+
 参考 [junitperf](https://github.com/houbb/junitperf)

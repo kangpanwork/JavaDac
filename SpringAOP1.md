@@ -63,9 +63,13 @@ Pay with alipay ...
 回溯之前的代码可知，在 @Around 的切面类中，我们很清晰地定义了切面对应的方法，但是却没有被执行到。这说明了在类的内部，通过 this 方式调用的方法，是没有被 Spring AOP 增强的。这是为什么呢？我们来分析一下。
 #### 案例解析
 我们可以从源码中找到真相。首先来设置个断点，调试看看 this 对应的对象是什么样的：
+
 ![](/1.png)
+
 可以看到，this 对应的就是一个普通的 ElectricService 对象，并没有什么特别的地方。再看看在 Controller 层中自动装配的 ElectricService 对象是什么样：
+
 ![](/2.png)
+
 可以看到，这是一个被 Spring 增强过的 Bean，所以执行 charge() 方法时，会执行记录接口调用时间的增强操作。而 this 对应的对象只是一个普通的对象，并没有做任何额外的增强。
 
 为什么 this 引用的对象只是一个普通对象呢？这还要从 Spring AOP 增强对象的过程来看。但在此之前，有些基础我需要在这里强调下。
@@ -73,6 +77,7 @@ Pay with alipay ...
 > Spring AOP 的实现
 
 Spring AOP 的底层是动态代理。而创建代理的方式有两种，JDK 的方式和 CGLIB 的方式。JDK 动态代理只能对实现了接口的类生成代理，而不能针对普通类。而 CGLIB 是可以针对类实现代理，主要是对指定的类生成一个子类，覆盖其中的方法，来实现代理对象。具体区别可参考下图：
+
 ![](/3.png)
 
 
@@ -90,6 +95,7 @@ Spring AOP 的底层是动态代理。而创建代理的方式有两种，JDK �
 而对于非 Spring Boot 程序，除了添加相关 AOP 依赖项外，我们还常常会使用 @EnableAspectJAutoProxy 来开启 AOP 功能。这个注解类引入（Import）AspectJAutoProxyRegistrar，它通过实现 ImportBeanDefinitionRegistrar 的接口方法来完成 AOP 相关 Bean 的准备工作。
 
 补充完最基本的 Spring 底层知识和使用知识后，我们具体看下创建代理对象的过程。先来看下调用栈：
+
 ![](/4.png)
 
 创建代理对象的时机就是创建一个 Bean 的时候，而创建的的关键工作其实是由 AnnotationAwareAspectJAutoProxyCreator 完成的。它本质上是一种 BeanPostProcessor。所以它的执行是在完成原始 Bean 构建后的初始化 Bean（initializeBean）过程中。而它到底完成了什么工作呢？我们可以看下它的 postProcessAfterInitialization 方法：

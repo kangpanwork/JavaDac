@@ -1,6 +1,12 @@
 Java学习网站 [logicbig](https://www.logicbig.com/)
 [java 8 Stream Tutoriala](https://www.logicbig.com/tutorials/core-java-tutorial/java-util-stream/stream-api-intro.html)
 
+![](/10.jpg)
+
+如图 蓝色区域是流的创建，包括数组、文件、集合等；淡黄色区域是流的中间操作，包括过滤、排序、映射、扁平化等；绿色区域是流的终端操作，包括分组、收集、统计、归约等。
+
+![](/11.jpg)
+
 介绍下几个常用的函数接口
 ```
 @FunctionalInterface
@@ -380,4 +386,5 @@ public class Test {
 参考
 
  [java-8-tutorial](https://winterbe.com/posts/2014/03/16/java-8-tutorial/)
+
 [恕我直言：你可能真的不会java编程](https://www.kancloud.cn/hanxt/javacrazy/)
