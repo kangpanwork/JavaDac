@@ -128,7 +128,7 @@ public class Test implements MeterBinder {
 
     @Override
     public void bindTo(MeterRegistry registry) {
-        this.counter = this.counter = registry.counter("counter.number");
+        this.counter = registry.counter("counter.number");
     }
 }
 ```
