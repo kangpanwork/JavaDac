@@ -578,7 +578,9 @@ Transfer-Encoding: chunked
 ```
 ### 参考
 Spring Cloud 的 Eureka 的官网文档：http://cloud.spring.io/spring-cloud-netflix/single/spring-cloud-netflix.html
+
 Spring Cloud 的官方文档：https://springcloud.cc/spring-cloud-dalston.html
+
 Eureka 的相关接口 https://github.com/Netflix/eureka/wiki/Eureka-REST-operations
 
 

@@ -238,4 +238,5 @@ scrape_configs:
 
 参考文章 
 [Spring Boot Actuator:健康检查、审计、统计和监控](https://bigjar.github.io/2018/08/19/Spring-Boot-Actuator-%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5%E3%80%81%E5%AE%A1%E8%AE%A1%E3%80%81%E7%BB%9F%E8%AE%A1%E5%92%8C%E7%9B%91%E6%8E%A7/)
+
 [Spring Boot Metrics监控之Prometheus&amp;Grafana](https://bigjar.github.io/2018/08/19/Spring-Boot-Metrics%E7%9B%91%E6%8E%A7%E4%B9%8BPrometheus-Grafana/)

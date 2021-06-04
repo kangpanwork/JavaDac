@@ -39,9 +39,13 @@ docsify init ./docs
 #### 本地预览
 通过运行 `docsify serve` 启动一个本地服务器，可以方便地实时预览效果。默认访问地址 `http://localhost:3000` 。
 #### 配置主题
+
 参考 [https://docsify.js.org/#/zh-cn/themes](https://docsify.js.org/#/zh-cn/themes)
 
-[docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable/#/) 一个用于docsify的，简单到令人愉悦的主题系统，参考[https://codesandbox.io/s/xv36w4695o?file=/sidebar.md:0-167](https://codesandbox.io/s/xv36w4695o?file=/sidebar.md:0-167)
+[docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable/#/) 一个用于docsify的，简单到令人愉悦的主题系统
+
+参考[https://codesandbox.io/s/xv36w4695o?file=/sidebar.md:0-167](https://codesandbox.io/s/xv36w4695o?file=/sidebar.md:0-167)
+
 直接粘贴复制它的文件，然后用 `vscode` 打开，浏览器可以实时查看到效果
 #### 部署 Github
 接下来自己修修改改改，然后上传到 `github`，访问 [https://javakangpan.github.io/Blog/#/](https://javakangpan.github.io/Blog/#/)
